@@ -1,0 +1,51 @@
+---
+title: "MABT -- MultiAssay big table experiments"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "Jan 2017"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Infrastructure for Multi-Assay Experiments using Google BigTable}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::pdf_document:
+    toc: yes
+    number_sections: yes
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+It is challenging to authenticate in a non-interactive
+setting.  All chunks here are eval=FALSE, but a PDF will
+be made available with a completed run.
+
+Here's a setup.
+```{r setup,echo=TRUE,eval=FALSE}
+library(GoogleGenomics)
+apik = Sys.getenv("GOOGLE_API_KEY")
+authenticate(apiKey=apik)
+getBQ2 = function() {
+library(dplyr)
+library(bigrquery)
+my_billing = "cgc-05-0009" # replace billing info here with your own
+src_bigquery("cgc-05-0009", "yriMulti", billing = my_billing)
+}
+```
+
+```{r demo, eval=FALSE}
+suppressPackageStartupMessages({
+library(MABT)
+})
+bq = getBQ2()
+bq
+bano = 
+  RangedBT("cgc-05-0009", bq, 
+   "banovichSE_expressionData", 
+    "banovichSE_rowRanges")
+bano
+nrow(bano)
+```

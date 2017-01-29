@@ -1,0 +1,21 @@
+Package: MultiAssayBT
+Title: MultiAssayBT bigtable back end for multiassay experiment
+Description: Explore bigtable back end for multiassay experiment.
+Version: 0.0.0
+Author: Vince Carey
+Imports: methods,
+    BiocGenerics,
+    Biobase,
+    bigrquery,
+    GoogleGenomics,
+    dplyr,
+    magrittr
+Depends:
+    SummarizedExperiment, knitr
+Suggests:
+Maintainer: VJ Carey <stvjc@channing.harvard.edu>
+License: Artistic-2.0
+LazyLoad: yes
+BiocViews: 
+RoxygenNote: 5.0.1
+VignetteBuilder: knitr
